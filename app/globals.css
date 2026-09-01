@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #0a0b0c;
+  --color-charcoal: #141618;
+  --color-charcoal-soft: #1c1f22;
+  --color-steel: #c7cbd1;
+  --color-steel-dim: #74797f;
+  --color-bone: #f3f1ec;
+  --color-copper: #c1743c;
+  --color-copper-dim: #8a5530;
+
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+
+  --breakpoint-xs: 22.5rem;
+}
+
+:root {
+  --background: var(--color-ink);
+  --foreground: var(--color-bone);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-copper);
+  color: var(--color-ink);
+}
+
+/* Visible focus ring for keyboard users, on top of Tailwind's utilities */
+:focus-visible {
+  outline: 2px solid var(--color-copper);
+  outline-offset: 3px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Fine hairline grid texture used behind sections for a technical / blueprint feel */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(199, 203, 209, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(199, 203, 209, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.brushed-metal {
+  background:
+    repeating-linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    linear-gradient(155deg, #1c1f22 0%, #101214 55%, #17191c 100%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

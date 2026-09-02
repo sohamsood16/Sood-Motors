@@ -264,7 +264,7 @@ export default function Booking() {
           <div className="sm:col-span-2">
             <button
               type="submit"
-              className="rounded-full bg-bone px-8 py-3.5 text-sm font-medium text-ink transition-colors duration-200 hover:bg-copper"
+              className="btn-lift rounded-full bg-bone px-8 py-3.5 text-sm font-medium text-ink hover:bg-copper"
             >
               Send Booking via WhatsApp
             </button>

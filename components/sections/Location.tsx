@@ -52,7 +52,7 @@ export default function Location() {
               src={embedSrc}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="h-full w-full grayscale invert-0"
+              className="h-full w-full"
               style={{ filter: "grayscale(0.4) contrast(1.05)" }}
             />
           </div>

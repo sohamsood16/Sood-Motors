@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: "Process", href: "#process" },
   { label: "Gallery", href: "#gallery" },
   { label: "Why Us", href: "#why-us" },
+  { label: "FAQ", href: "#faq" },
   { label: "Location", href: "#location" },
   { label: "Contact", href: "#contact" },
 ];
@@ -16,6 +17,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -30,6 +32,29 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Highlights the nav link for whichever section is currently in view, so
+  // the person always has a sense of where they are on the page.
+  useEffect(() => {
+    const sections = NAV_LINKS.map((link) =>
+      document.getElementById(link.href.slice(1))
+    ).filter((el): el is HTMLElement => !!el);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveSection(`#${visible.target.id}`);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header
@@ -58,9 +83,20 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-steel transition-colors duration-200 hover:text-bone"
+                aria-current={activeSection === link.href ? "true" : undefined}
+                className={`relative text-sm transition-colors duration-200 ${
+                  activeSection === link.href
+                    ? "text-bone"
+                    : "text-steel hover:text-bone"
+                }`}
               >
                 {link.label}
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-px bg-copper transition-all duration-300 ${
+                    activeSection === link.href ? "w-full" : "w-0"
+                  }`}
+                  aria-hidden="true"
+                />
               </a>
             </li>
           ))}
@@ -75,7 +111,7 @@ export default function Navbar() {
           </a>
           <a
             href="#booking"
-            className="rounded-full bg-bone px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-200 hover:bg-copper"
+            className="btn-lift rounded-full bg-bone px-5 py-2.5 text-sm font-medium text-ink hover:bg-copper"
           >
             Book a Detail
           </a>

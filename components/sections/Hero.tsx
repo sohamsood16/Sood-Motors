@@ -41,7 +41,7 @@ export default function Hero() {
     <section
       id="top"
       ref={rootRef}
-      className="relative flex min-h-[100svh] w-full items-center overflow-hidden bg-ink pt-24"
+      className="vignette grain relative flex min-h-[100svh] w-full items-center overflow-hidden bg-ink pt-24"
     >
       <div className="blueprint-grid pointer-events-none absolute inset-0 opacity-60" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink" />
@@ -75,13 +75,13 @@ export default function Hero() {
           <div data-hero-item className="mt-9 flex flex-wrap gap-4">
             <a
               href="#booking"
-              className="rounded-full bg-bone px-7 py-3.5 text-sm font-medium text-ink transition-colors duration-200 hover:bg-copper"
+              className="btn-lift rounded-full bg-bone px-7 py-3.5 text-sm font-medium text-ink hover:bg-copper"
             >
               Book a Detail
             </a>
             <a
               href="#services"
-              className="rounded-full border border-white/20 px-7 py-3.5 text-sm font-medium text-bone transition-colors duration-200 hover:border-copper hover:text-copper"
+              className="btn-lift rounded-full border border-white/20 px-7 py-3.5 text-sm font-medium text-bone hover:border-copper hover:text-copper"
             >
               Explore Services
             </a>

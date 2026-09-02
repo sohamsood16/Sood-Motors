@@ -7,6 +7,7 @@ import Experience3D from "@/components/sections/Experience3D";
 import Gallery from "@/components/sections/Gallery";
 import BeforeAfter from "@/components/sections/BeforeAfter";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
+import FAQ from "@/components/sections/FAQ";
 import Booking from "@/components/sections/Booking";
 import InstagramSection from "@/components/sections/Instagram";
 import Location from "@/components/sections/Location";
@@ -25,6 +26,7 @@ export default function Home() {
         <Gallery />
         <BeforeAfter />
         <WhyChooseUs />
+        <FAQ />
         <Booking />
         <InstagramSection />
         <Location />

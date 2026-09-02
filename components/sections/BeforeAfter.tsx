@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function BeforeAfter() {
   const [position, setPosition] = useState(50);
@@ -20,14 +21,15 @@ export default function BeforeAfter() {
 
         <div className="relative mt-14 aspect-[16/10] w-full select-none overflow-hidden rounded-[2px] border border-white/10 sm:aspect-[21/9]">
           {/* Before layer */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at 40% 40%, #3a3d40 0%, #1c1f22 45%, #101214 100%)",
-            }}
-          >
-            <span className="absolute left-5 top-5 rounded-full border border-white/15 px-3 py-1 font-mono text-[0.65rem] tracking-[0.2em] text-steel">
+          <div className="absolute inset-0">
+            <Image
+              src="/images/gallery/before-crop.jpg"
+              alt="Unpolished paint before correction"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+            <span className="absolute left-5 top-5 rounded-full border border-white/15 bg-ink/40 px-3 py-1 font-mono text-[0.65rem] tracking-[0.2em] text-steel">
               BEFORE
             </span>
           </div>
@@ -37,12 +39,12 @@ export default function BeforeAfter() {
             className="absolute inset-0 overflow-hidden"
             style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
           >
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(circle at 40% 40%, #f3f1ec 0%, #c7cbd1 35%, #4a4e52 75%, #17191c 100%)",
-              }}
+            <Image
+              src="/images/gallery/after-crop.jpg"
+              alt="Corrected paint with mirror finish after polishing"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
             <span className="absolute right-5 top-5 rounded-full border border-copper/50 bg-ink/40 px-3 py-1 font-mono text-[0.65rem] tracking-[0.2em] text-copper">
               AFTER

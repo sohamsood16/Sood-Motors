@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { galleryItems } from "@/lib/gallery";
 import { useScrollReveal } from "@/lib/useScrollReveal";
@@ -66,10 +67,19 @@ export default function Gallery() {
               className={`group relative overflow-hidden rounded-[2px] text-left ${SPAN_CLASSES[item.span]} aspect-square sm:aspect-auto`}
               aria-label={`Open ${item.title} image`}
             >
-              <div
-                className="absolute inset-0 scale-105 transition-transform duration-700 ease-out group-hover:scale-115"
-                style={{ background: item.gradient }}
-              />
+              <div className="absolute inset-0 scale-105 transition-transform duration-700 ease-out group-hover:scale-115">
+                {item.image ? (
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="h-full w-full" style={{ background: item.gradient }} />
+                )}
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-95" />
               <div className="absolute inset-0 flex flex-col justify-end p-4">
                 <span className="font-mono text-[0.6rem] tracking-[0.2em] text-steel-dim">
@@ -114,10 +124,21 @@ export default function Gallery() {
           </button>
 
           <div className="relative aspect-[4/3] w-full max-w-2xl overflow-hidden rounded-[2px]">
-            <div
-              className="absolute inset-0"
-              style={{ background: galleryItems[activeIndex].gradient }}
-            />
+            {galleryItems[activeIndex].image ? (
+              <Image
+                src={galleryItems[activeIndex].image!}
+                alt={galleryItems[activeIndex].title}
+                fill
+                sizes="(max-width: 768px) 100vw, 672px"
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <div
+                className="absolute inset-0"
+                style={{ background: galleryItems[activeIndex].gradient }}
+              />
+            )}
             <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/90 via-transparent to-transparent p-6">
               <span className="font-mono text-xs tracking-[0.2em] text-steel-dim">
                 {galleryItems[activeIndex].category.toUpperCase()}

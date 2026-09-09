@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     default: `${business.name} | Premium Car Detailing in Kurukshetra`,
     template: `%s | ${business.name}`,
   },
+  verification: {
+  google: "pWRNXypn4L-OQDF4J_7P9JrMvBUci360ThZiquzRsUQ",
+  },
   description: business.description,
   keywords: [
     "car detailing Kurukshetra",
